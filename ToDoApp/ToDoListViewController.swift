@@ -5,10 +5,16 @@ import UIKit
 
 class ToDoListViewController: UITableViewController {
 
-    let itemArray = ["item1", "item2", "item3"]
+    var itemArray = ["item1", "item2", "item3"]
+    
+    let defaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String]{
+            itemArray = items
+        }
         // Do any additional setup after loading the view.
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,5 +46,45 @@ class ToDoListViewController: UITableViewController {
         
         
     }
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add new item to the list", message: "", preferredStyle: .alert)
+        
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            print(textField.text)
+            self.itemArray.append(textField.text!)
+            
+            
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
+            
+            
+            self.tableView.reloadData()
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Input your item"
+            textField = alertTextField
+            print(alertTextField.text)
+        }
+        
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
 }
+
+
 
