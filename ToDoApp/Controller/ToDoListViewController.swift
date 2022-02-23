@@ -2,7 +2,7 @@
 
 
 import UIKit
-
+import CoreData
 class ToDoListViewController: UITableViewController {
 
     var itemArray = [Item]()
@@ -15,7 +15,7 @@ class ToDoListViewController: UITableViewController {
         super.viewDidLoad()
         
     
-        loadItems()
+       loadItems()
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -28,6 +28,7 @@ class ToDoListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         
        
+        //itemArray[indexPath.row].setValue("completed", forKey: "title")
         
         
         let item = itemArray[indexPath.row]
@@ -49,6 +50,10 @@ class ToDoListViewController: UITableViewController {
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
      
         
+        //context.delete(itemArray[indexPath.row])
+        //itemArray.remove(at: indexPath.row)
+   
+        
   saveItems()
         
        
@@ -58,6 +63,7 @@ class ToDoListViewController: UITableViewController {
         
         
     }
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -69,9 +75,12 @@ class ToDoListViewController: UITableViewController {
       
       
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            let newItem = Item()
-            newItem.title = textField.text!
             
+            
+            
+            let newItem = Item(context: self.context)
+            newItem.title = textField.text!
+            newItem.done = false
             self.itemArray.append(newItem)
             
             
@@ -91,8 +100,32 @@ class ToDoListViewController: UITableViewController {
         
     }
     
-    
-    
+    func saveItems() {
+        
+      
+          do{
+              
+             try context.save()
+          }catch {
+           print("error \(error)")
+          }
+          self.tableView.reloadData()
+    }
+   func loadItems() {
+     
+       let request : NSFetchRequest<Item> = Item.fetchRequest()
+       do{
+     itemArray =  try context.fetch(request)
+       }catch {
+           
+           print("Error\(error)")
+       }
+      
+     
+     
+   }
+}
+    /*
     
     func saveItems() {
         
@@ -120,7 +153,9 @@ class ToDoListViewController: UITableViewController {
         }
         
     }
-}
+     
+     */
+
 
 
 
