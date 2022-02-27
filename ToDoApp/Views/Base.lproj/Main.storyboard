@@ -40,7 +40,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDoList" id="IzA-Wy-mdT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="neZ-P0-rJt">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="7fE-zG-3C2" id="hCt-ja-Rz9"/>
                             </connections>
@@ -62,11 +62,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="55K-lg-MYb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" red="0.34244768139999998" green="0.35359540719999999" blue="0.73313172339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <navigationBarAppearance key="scrollEdgeAppearance" backgroundEffect="systemUltraThinMaterial">
                             <color key="backgroundColor" red="0.34244768139999998" green="0.35359540719999999" blue="0.73313172339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,7 +84,7 @@
             </objects>
             <point key="canvasLocation" x="798.55072463768124" y="124.55357142857142"/>
         </scene>
-        <!--ToDoList-->
+        <!--Categories-->
         <scene sceneID="jVx-Td-TWn">
             <objects>
                 <tableViewController id="T6Y-ya-3yc" customClass="CategoryTableViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -105,9 +107,9 @@
                             <outlet property="delegate" destination="T6Y-ya-3yc" id="i7x-tW-2JX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ToDoList" id="s6C-h5-qbN">
+                    <navigationItem key="navigationItem" title="Categories" id="s6C-h5-qbN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="z9F-1g-zfi">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="T6Y-ya-3yc" id="8kq-03-IYV"/>
                             </connections>
