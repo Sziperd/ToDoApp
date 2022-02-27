@@ -14,6 +14,7 @@
 		CB2788EB27C2614E00FBBA3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB2788EA27C2614E00FBBA3C /* Assets.xcassets */; };
 		CB2788EE27C2614E00FBBA3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB2788EC27C2614E00FBBA3C /* LaunchScreen.storyboard */; };
 		CBBDECAC27C5263B007D2EA7 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBBDECAA27C5263B007D2EA7 /* DataModel.xcdatamodeld */; };
+		CBBDECD127C6DA19007D2EA7 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBDECD027C6DA19007D2EA7 /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CB2788ED27C2614E00FBBA3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB2788EF27C2614E00FBBA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBBDECAB27C5263B007D2EA7 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		CBBDECD027C6DA19007D2EA7 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2788E527C2614A00FBBA3C /* ToDoListViewController.swift */,
+				CBBDECD027C6DA19007D2EA7 /* CategoryTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				CBBDECAC27C5263B007D2EA7 /* DataModel.xcdatamodeld in Sources */,
 				CB2788E627C2614A00FBBA3C /* ToDoListViewController.swift in Sources */,
+				CBBDECD127C6DA19007D2EA7 /* CategoryTableViewController.swift in Sources */,
 				CB2788E227C2614A00FBBA3C /* AppDelegate.swift in Sources */,
 				CB2788E427C2614A00FBBA3C /* SceneDelegate.swift in Sources */,
 			);

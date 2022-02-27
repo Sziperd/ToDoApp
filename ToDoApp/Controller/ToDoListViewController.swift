@@ -9,21 +9,42 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
     
     
     var itemArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    //let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
  
 
+    var selectedCategory : Categoryy? {
+          didSet{
+              loadItems()
+          }
+      }
     
+    
+    
+    
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
        
         
-       loadItems()
+     //  loadItems()
+    
+    
+    
+    
+    //MARK: Tableview datasource methods
+    
+    
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
     }
@@ -48,6 +69,10 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
+    
+    //MARK: TableView Delegate methods
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // print(itemArray[indexPath.row])
         
@@ -64,10 +89,10 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
+        //MARK: Add new Items
         
     }
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+   // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -85,16 +110,17 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.parentCategory = self.selectedCategory
             self.itemArray.append(newItem)
             
-            
             self.saveItems()
+
         }
         
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Input your item"
             textField = alertTextField
-            print(alertTextField.text)
+           // print(alertTextField.text)
         }
         
       
@@ -103,6 +129,9 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
         present(alert, animated: true, completion: nil)
         
     }
+    
+    //MARK: Model manipulation methods
+    
     
     func saveItems() {
         
@@ -118,6 +147,30 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
     
     
     
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
+         
+         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+         
+         if let addtionalPredicate = predicate {
+             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, addtionalPredicate])
+         } else {
+             request.predicate = categoryPredicate
+         }
+
+         
+         do {
+             itemArray = try context.fetch(request)
+         } catch {
+             print("Error fetching data from context \(error)")
+         }
+         
+         tableView.reloadData()
+         
+     }
+     
+ 
+    
+    /*
     
     func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
      
@@ -132,7 +185,7 @@ class ToDoListViewController: UITableViewController, UISearchBarDelegate {
      
      
    }
-    
+    */
     //MARK: search bar functionality.
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
