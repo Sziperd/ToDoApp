@@ -11,7 +11,7 @@
 
 ## Description
 
-Simple to do list app featuring custom categories, ticking off items that are don't and deleting both items and categories.
+Simple to do list app featuring custom categories, ticking off items that are done and deleting both items and categories.
 
 #
 ---
